@@ -1,5 +1,6 @@
 package qin.xue.refresh;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,12 +50,33 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 break;
             case Module.NORMAL_TYPE:
                 ViewHolder h = (ViewHolder) holder;
-                h.textView.setText(String.valueOf(data.get(position).val));
+                Module module = data.get(position);
+                h.textView.setText(String.valueOf(module.val));
+                h.itemView.setBackgroundColor(getColor(module.val));
                 break;
             default:
                 break;
         }
+    }
 
+    private int getColor(int i) {
+        int color = 0;
+        switch (i % 3) {
+            case 0:
+                color = Color.RED;
+                break;
+            case 1:
+                color = Color.GREEN;
+                break;
+            case 2:
+                color = Color.BLUE;
+                break;
+            default:
+                color = Color.WHITE;
+                break;
+
+        }
+        return color;
     }
 
 
